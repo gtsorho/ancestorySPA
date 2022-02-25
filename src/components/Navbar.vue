@@ -102,7 +102,7 @@ export default {
         search(){
             console.log(this.searchValue)
             if(this.searchValue){
-                axios.post(`http://127.0.0.1:8000/api/search/${this.searchValue}`
+                axios.post(`https://ancestryapi.herokuapp.com/api/search/${this.searchValue}`
                 ).then(response => {
                     console.log(response.data)
                     this.$emit('search', response.data)
@@ -117,7 +117,7 @@ export default {
         adminsearch(){
             console.log(this.searchValue)
             var token = localStorage.getItem('token');
-            axios.get(`http://127.0.0.1:8000/api/adminlookup/${this.searchValue}`,
+            axios.get(`https://ancestryapi.herokuapp.com/api/adminlookup/${this.searchValue}`,
             {
                 headers:{'Authorization': `Bearer ${token}`}
             }).then(response => {
@@ -137,7 +137,7 @@ export default {
         logout(){
             console.log('response');
             var token = localStorage.getItem('token');
-            axios.get('http://127.0.0.1:8000/api/logout',
+            axios.get('https://ancestryapi.herokuapp.com/api/logout',
             {
                 headers:{'Authorization': `Bearer ${token}`}
             }
@@ -153,7 +153,7 @@ export default {
             // console.log(id,i)
             var token = localStorage.getItem('token');
             if(this.searchValue){
-                axios.get(`http://127.0.0.1:8000/api/delete/${id}`,
+                axios.get(`https://ancestryapi.herokuapp.com/api/delete/${id}`,
                 {
                 headers:{'Authorization': `Bearer ${token}`}
                 }).then(response => {

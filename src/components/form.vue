@@ -408,9 +408,9 @@ data() {
             var token = localStorage.getItem('token');
             console.log(this.dataToEdit)
             if(this.dataToEdit){
-                var urloption = `http://127.0.0.1:8000/api/update/${this.dataToEdit.id}`
+                var urloption = `https://ancestryapi.herokuapp.com/api/update/${this.dataToEdit.id}`
             }else{
-                var urloption = `http://127.0.0.1:8000/api/create`
+                var urloption = `https://ancestryapi.herokuapp.com/api/create`
             }
                 console.log(urloption)
 
@@ -422,7 +422,7 @@ data() {
                 this.postFormData.append('newUser', response.data.ancestor_id);
                 if(!this.files.length == 0){
                     console.log(this.files)
-                    axios.post('http://127.0.0.1:8000/api/storeimg', this.postFormData,
+                    axios.post('https://ancestryapi.herokuapp.com/api/storeimg', this.postFormData,
                     {
                         headers:{'Authorization': `Bearer ${token}`}
                     })
