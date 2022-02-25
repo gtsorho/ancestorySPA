@@ -168,7 +168,9 @@ export default {
         this.message = response.data.status
         this.loading = false
       }).catch(error => {
-        console.log(error);
+        console.log(error.response.data.message);
+        this.message = error.response.data.message
+        this.loading = false
       })
     }, 
   },
