@@ -407,28 +407,23 @@ data() {
                 this.bio.bioRelation[item.relativeName] = item.relativeRelation;
             });
             var token = localStorage.getItem('token');
-            console.log(this.dataToEdit)
             if(this.dataToEdit){
                 var urloption = `http://127.0.0.1:8000/api/update/${this.dataToEdit.id}`
             }else{
                 var urloption = `http://127.0.0.1:8000/api/create`
             }
-                console.log(urloption)
 
             axios.post(urloption, this.bio,
             {
                 headers:{'Authorization': `Bearer ${token}`}
             }).then(response =>  {
-                console.log(response.data)
                 this.postFormData.append('newUser', response.data.ancestor_id);
                 if(!this.files.length == 0){
-                    console.log(this.files)
                     axios.post('http://127.0.0.1:8000/api/storeimg', this.postFormData,
                     {
                         headers:{'Authorization': `Bearer ${token}`}
                     })
                     .then(response =>  {
-                        console.log(response)
                         this.$emit('borderstatus')   
                         // this.bio =   
                         //     {

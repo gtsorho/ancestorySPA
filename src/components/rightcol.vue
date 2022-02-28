@@ -65,7 +65,7 @@ export default {
         this.firsthalf = arr.join(" ");
         this.secondhalf = newBio.join(" ");
 
-        console.log(arr.join(" "), newBio.join(" "))
+        // console.log(arr.join(" "), newBio.join(" "))
     },
     methods: {
         showMore(){

@@ -62,7 +62,6 @@ export default {
             axios.get('http://127.0.0.1:8000/api/index'
             ).then(response => {
                 this.items = response.data 
-                console.log(this.items)
             }).catch(error => {
                 console.log(error);
             })

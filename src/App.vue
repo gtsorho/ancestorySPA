@@ -117,7 +117,6 @@ export default {
   methods: {
     isAuth(){
       setTimeout(() => {
-        console.log(this.$refs.closeModal);
         this.$refs.closeModal.click()
       }, 500);
     },
@@ -128,7 +127,6 @@ export default {
         'password':this.password
       }
         ).then(response =>  {
-          console.log(response.data)
           window.localStorage.setItem('token', response.data.token); 
           this.responseMsg = true
           setTimeout(() => {
@@ -151,7 +149,6 @@ export default {
         'password_confirmation': this.password_confirmation
       }
         ).then(response => {
-            console.log(response.data)
             window.localStorage.setItem('token', response.data.token); 
             this.$refs.closeModal.click();
             this.$router.push('/registration')
@@ -164,7 +161,6 @@ export default {
       axios.post('http://127.0.0.1:8000/api/forgotpassword', 
       {'email':this.email}
       ).then(response =>  {
-        console.log(response.data)
         this.message = response.data.status
         this.loading = false
       }).catch(error => {

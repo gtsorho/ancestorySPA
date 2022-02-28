@@ -31,7 +31,6 @@ export default {
         }
     },
     created(){
-      // console.log(this.ancestor)
     },
   beforeCreate: function() {
     document.body.className = 'home';

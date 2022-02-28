@@ -72,12 +72,6 @@ export default {
                 return localStorage.getItem('token');
             }
     },
-    // beforeMount(){
-    //         console.log(localStorage.getItem('token'))
-    //         if(!localStorage.getItem('token')){
-    //             this.$router.push('/')
-    //         }
-    // },
     created(){
             if(this.routeName == 'Registration'){
                 this.page = false
@@ -102,11 +96,9 @@ export default {
     },
     methods:{
         search(){
-            console.log(this.searchValue)
             if(this.searchValue){
                 axios.post(`http://127.0.0.1:8000/api/search/${this.searchValue}`
                 ).then(response => {
-                    console.log(response.data)
                     this.$emit('search', response.data)
                     this.$router.push({ name: 'index', params: { searchData: response.data }})
                 }).catch(error => {
@@ -117,13 +109,11 @@ export default {
             }
         },
         adminsearch(){
-            console.log(this.searchValue)
             var token = localStorage.getItem('token');
             axios.get(`http://127.0.0.1:8000/api/adminlookup/${this.searchValue}`,
             {
                 headers:{'Authorization': `Bearer ${token}`}
             }).then(response => {
-                console.log(response);
                 this.adminsearchvalue = response.data
             }).catch(error => {
                 console.log(error);
@@ -137,14 +127,12 @@ export default {
             }
         },
         logout(){
-            console.log('response');
             var token = localStorage.getItem('token');
             axios.get('http://127.0.0.1:8000/api/logout',
             {
                 headers:{'Authorization': `Bearer ${token}`}
             }
             ).then(response => {
-                console.log(response);
                 localStorage.removeItem('token');
                 this.$router.push('/')
             }).catch(error => {
@@ -152,14 +140,12 @@ export default {
             })
         },
         deleteData(id,i){
-            // console.log(id,i)
             var token = localStorage.getItem('token');
             if(this.searchValue){
                 axios.get(`http://127.0.0.1:8000/api/delete/${id}`,
                 {
                 headers:{'Authorization': `Bearer ${token}`}
                 }).then(response => {
-                    console.log(response.data)
                     this.adminsearchvalue.splice(i, 1);
                 }).catch(error => {
                     console.log(error);
