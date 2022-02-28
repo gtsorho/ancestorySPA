@@ -3,30 +3,30 @@
     <div class="personal-info row" v-show="formStage1">
     <div class="col-md-4">
         <label for="Firstname" class="form-label">First Name</label>
-        <input type="text" class="form-control" v-model="bio.firstname" id="Firstname" />
+        <input type="text" class="form-control form-control-sm " placeholder="John" v-model="bio.firstname" id="Firstname" />
     </div>
     <div class="col-md-4">
         <label for="lastname" class="form-label">Last Name</label>
-        <input type="text" class="form-control" v-model="bio.lastname" id="lastname" />
+        <input type="text" class="form-control form-control-sm" placeholder="Doe" v-model="bio.lastname" id="lastname" />
     </div>
     <div class="col-md-4">
         <label for="othernames" class="form-label">Other Names</label>
-        <input type="text" class="form-control" v-model="bio.othernames" id="othernames" />
+        <input type="text" class="form-control form-control-sm" placeholder="Mensah" v-model="bio.othernames" id="othernames" />
     </div>
     <div class="col-md-4">
         <label for="inputPassword4" class="form-label text-success">DoB</label>
-        <input type="date" class="form-control" v-model="bio.dob" id="inputPassword2" />
+        <input type="date" class="form-control form-control-sm" v-model="bio.dob" id="inputPassword2" />
     </div>
     <div class="col-md-4">
         <label for="inputPassword4" class="form-label text-danger">DoD</label>
-        <input type="date" class="form-control" v-model="bio.dod" id="inputPassword4" />
+        <input type="date" class="form-control form-control-sm" v-model="bio.dod" id="inputPassword4" />
     </div>
     <div class="col-12">
         <label for="inputAddress" class="form-label" >Place of Bith</label>
         <input
         v-model="bio.placeofBirth"
         type="text"
-        class="form-control"
+        class="form-control form-control-sm"
         id="inputAddress"
         placeholder="Assin"
         />
@@ -36,23 +36,23 @@
         <input
         v-model="bio.finalResidence"
         type="text"
-        class="form-control"
+        class="form-control form-control-sm"
         id="inputAddress2"
         placeholder="Apartment, studio, or floor"
         />
     </div>
     <div class="col-md-6">
         <label for="inputCity" class="form-label">HomeTown</label>
-        <input type="text" class="form-control" v-model="bio.hometown" id="inputCity" />
+        <input type="text" class="form-control form-control-sm" v-model="bio.hometown" id="inputCity" placeholder="Assin-Fosu" />
     </div>
     <div class="col-md-6">
         <label for="FamilyName" class="form-label">Family Name</label>
-        <input type="text" class="form-control" v-model="bio.FamilyName" id="FamilyName" />
+        <input type="text" class="form-control form-control-sm" v-model="bio.FamilyName" id="FamilyName" placeholder="Doe" />
     </div>
     
     <div class="col-12 mt-4">
-        <button class="btn btn-primary float-end" @click="next">next</button>
-        <button class="btn btn-dark float-end mx-2" @click="previous">previous</button>
+        <button class="btn btn-sm btn-primary float-end" @click="next">next</button>
+        <button class="btn btn-sm btn-dark float-end mx-2" @click="previous">previous</button>
     </div>
     </div>
     <!-- occupation and terretries -->
@@ -67,9 +67,9 @@
         <input
             type="text"
             v-model="input.place"
-            class="form-control"
-            placeholder="Recipient's username"
-            aria-label="Recipient's username"
+            class="form-control form-control-sm"
+            placeholder="Kasoa, Brekum etc."
+            aria-label="Kasoa, Brekum etc."
             aria-describedby="basic-addon2"
         />
         <span
@@ -97,9 +97,9 @@
         <input
             type="text"
             v-model="input.institution"
-            class="form-control"
-            placeholder="Recipient's username"
-            aria-label="Recipient's username"
+            class="form-control form-control-sm"
+            placeholder="Sales Manager"
+            aria-label="Sales Manager"
             aria-describedby="basic-addon2"
         />
         <span
@@ -117,8 +117,8 @@
         >
         </div>
         <div class="col-12">
-        <button class="btn btn-primary float-end" @click="next">next</button>
-        <button class="btn btn-dark float-end mx-2" @click="previous">
+        <button class="btn btn-sm btn-primary float-end" @click="next">next</button>
+        <button class="btn btn-sm btn-dark float-end mx-2" @click="previous">
             previous
         </button>
         </div>
@@ -129,7 +129,7 @@
     <div class="form-floating">
         <textarea
         v-model="bio.biography"
-        class="form-control"
+        class="form-control form-control-sm"
         placeholder="Leave a Biography here"
         id="floatingTextarea2"
         style="height: 100px"
@@ -137,12 +137,12 @@
         <label for="floatingTextarea2">Biography</label>
         <div class="mt-2 col-md-6">
             <label for="cod" class="form-label">Cause of Death</label>
-            <input type="text" class="form-control" v-model="bio.causeofDeath" id="cod" placeholder="sickness, accident etc" />
+            <input type="text" class="form-control form-control-sm" v-model="bio.causeofDeath" id="cod" placeholder="sickness, accident etc" />
         </div>
     </div>
     <div class="mt-2">
-        <button class="btn btn-primary float-end" @click="next">next</button>
-        <button class="btn btn-dark float-end mx-2" @click="previous">previous</button>
+        <button class="btn btn-sm btn-primary float-end" @click="next">next</button>
+        <button class="btn btn-sm btn-dark float-end mx-2" @click="previous">previous</button>
     </div>
     </span>
 
@@ -154,12 +154,13 @@
         <input
             type="text"
             v-model="input.relativeName"
-            class="form-control me-2"
+            class="form-control form-control-sm me-2"
             placeholder="Full Name"
             aria-label="Recipient's username"
             aria-describedby="basic-addon2"
         />
         <select class="form-select ms-3" aria-label="Default select example" v-model="input.relativeRelation">
+            <option value="" disabled selected>Open this select menu</option>
             <option value="Father">Father</option>
             <option value="Mother">Mother</option>
             <option value="Sister">Sister</option>
@@ -175,8 +176,8 @@
         </div>
     </div>
         <div class="mt-2">
-        <button class="btn btn-primary float-end" @click="next">next</button>
-        <button class="btn btn-dark float-end mx-2" @click="previous">previous</button>
+        <button class="btn btn-sm btn-primary float-end" @click="next">next</button>
+        <button class="btn btn-sm btn-dark float-end mx-2" @click="previous">previous</button>
     </div>
     </span>
 
@@ -186,7 +187,7 @@
             <i class="bi text-warning fs-5 bi-exclamation"></i>
             <label for="formFileSm" class=" form-label" style="color: #90610e;">First Image will be applyed to profile image</label>
             <input
-                class="form-control form-control-sm"
+                class="form-control form-control-sm form-control form-control-sm-sm"
                 @change="onFileChange"
                 id="formFileSm"
                 ref="importfile"
@@ -196,20 +197,20 @@
         </div>
             <div class="">
                 <div class="input-group mb-3">
-                    <input type="text" v-model="imageId" style="max-width:10%" class="form-control" disabled placeholder="2" aria-label="No#">
+                    <input type="text" v-model="imageId" style="max-width:10%" class="form-control form-control-sm" disabled placeholder="2" aria-label="No#">
                     <span class="input-group-text">@</span>
-                    <input type="text" class="form-control" v-model="imageDescription"  placeholder="please select an image and add description" aria-label="description">
+                    <input type="text" class="form-control form-control-sm" v-model="imageDescription"  placeholder="please select an image and add description" aria-label="description">
                     <span class="input-group-text bg-success" @click="addDescription "><i class="bi bi-plus-lg"></i></span>
                 </div>
             </div>
             <div class="">
                 <div class="input-group flex-nowrap">
-                    <input type="url" class="form-control" v-model="videoLink" placeholder="video link" aria-label="video link" aria-describedby="addon-wrapping">
+                    <input type="url" class="form-control form-control-sm" v-model="videoLink" placeholder="video link" aria-label="video link" aria-describedby="addon-wrapping">
                     <span class="input-group-text bg-secondary" @click="bio.links.push(videoLink); videoLink = '' " id="addon-wrapping"><i class="bi bi-link-45deg"></i></span>
                 </div>
             </div>
 
-            <div class="btn link-btn me-1 mb-3" style="width:fit-content" role="alert"  v-for="(link, i) in bio.links" :key="i">
+            <div class="btn btn-sm link-btn me-1 mb-3" style="width:fit-content" role="alert"  v-for="(link, i) in bio.links" :key="i">
                 <a class="me-2 text-decoration-none" :href="link">{{link}}</a>
                 <p class="bi bi-x-circle text-dark" @click="bio.links.splice(i,1);" ></p>
             </div>
@@ -233,9 +234,9 @@
         <div class="mt-2">
             <p class="text-success fs-6 float-start mx-auto" v-show="responseMsg">Your process was Successful</p>
             <p class="text-danger fs-6 float-start mx-auto" v-show="errorMsg">{{error}}</p>
-            <button class="btn btn-success float-end" v-show="!dataToEdit" @click="addBio">submit</button>
-            <button class="btn btn-success float-end" v-show="dataToEdit" @click.prevent="addBio">Update</button>
-            <button class="btn btn-danger float-end mx-2" @click="previous">previous</button>
+            <button class="btn btn-sm btn-success float-end" v-show="!dataToEdit" @click="addBio">submit</button>
+            <button class="btn btn-sm btn-success float-end" v-show="dataToEdit" @click.prevent="addBio">Update</button>
+            <button class="btn btn-sm btn-danger float-end mx-2" @click="previous">previous</button>
         </div>
     </span>
 </form>
@@ -408,9 +409,9 @@ data() {
             var token = localStorage.getItem('token');
             console.log(this.dataToEdit)
             if(this.dataToEdit){
-                var urloption = `https://ancestryapi.herokuapp.com/api/update/${this.dataToEdit.id}`
+                var urloption = `http://127.0.0.1:8000/api/update/${this.dataToEdit.id}`
             }else{
-                var urloption = `https://ancestryapi.herokuapp.com/api/create`
+                var urloption = `http://127.0.0.1:8000/api/create`
             }
                 console.log(urloption)
 
@@ -422,7 +423,7 @@ data() {
                 this.postFormData.append('newUser', response.data.ancestor_id);
                 if(!this.files.length == 0){
                     console.log(this.files)
-                    axios.post('https://ancestryapi.herokuapp.com/api/storeimg', this.postFormData,
+                    axios.post('http://127.0.0.1:8000/api/storeimg', this.postFormData,
                     {
                         headers:{'Authorization': `Bearer ${token}`}
                     })
@@ -541,6 +542,8 @@ data() {
         },
         // *****************************************************************************
         onFileChange(e) {
+            this.bio.url = []
+            this.files = []
             const file = e.target.files;
             for (var i = 0; i < file.length; i++) {
                 this.files.push(file[i]);
@@ -556,6 +559,9 @@ data() {
     @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css");
         .input-group-text {
     cursor: pointer;
+    }
+    label{
+        font-size: smaller;
     }
     .cursor {
         cursor: pointer;

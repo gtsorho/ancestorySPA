@@ -16,11 +16,11 @@
         <form v-show="!signup_bool">
           <div class="">
             <label for="Email" class="form-label">Email</label>
-            <input type="email" class="form-control" v-model="email" id="loginemail"/>
+            <input type="email" class="form-control form-control-sm" v-model="email" id="loginemail"/>
           </div>
           <div class="" v-show="!forgotPass_bool">
               <label for="password" class="form-label" >Password</label>
-              <input type="password" class="form-control" v-model="password" id="loginpassword" />
+              <input type="password" class="form-control form-control-sm" v-model="password" id="loginpassword" />
           </div>
           <a href="#" class="mx-2" v-if="!message" @click="forgotPass_bool = true, modalfx = 'forgotPassword' ">Forgot Password</a>
           <div class="" v-show="loading">
@@ -42,19 +42,19 @@
         <form  v-show="signup_bool">
           <div class="">
             <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" v-model="name" id="name" />
+            <input type="text" class="form-control form-control-sm" v-model="name" id="name" />
           </div>
           <div class="">
             <label for="Email" class="form-label">Email</label>
-            <input type="email" class="form-control" v-model="email" id="email" />
+            <input type="email" class="form-control form-control-sm" v-model="email" id="email" />
           </div>
           <div class="">
               <label for="password" class="form-label">Password</label>
-              <input type="password" class="form-control" v-model="password" id="password" />
+              <input type="password" class="form-control form-control-sm" v-model="password" id="password" />
           </div>
           <div class="">
               <label for="password_confirmation" class="form-label">Confirm Password</label>
-              <input type="password" class="form-control" v-model="password_confirmation" id="password_confirmation" />
+              <input type="password" class="form-control form-control-sm" v-model="password_confirmation" id="password_confirmation" />
           </div>
           <p v-if="signup_bool" class=" text-success mx-2 float-end">
             I already have an account
@@ -68,16 +68,16 @@
             <p class="text-success fs-6 float-start mx-auto" v-show="responseMsg"><i class="bi bi-chat-square-text-fill me-1"></i>Your process was Successful</p>
             <p class="text-danger fs-6 float-start mx-auto" v-show="errorMsg"><i class="bi bi-exclamation-triangle-fill me-1"></i>{{error}}</p>
             
-        <button type="button"  ref="closeModal2" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        <button type="button" v-if="modalfx == 'login'" @click="loginFx" class="btn btn-primary">Login</button>
-        <button type="button" v-else-if="modalfx == 'forgotPassword'" @click="forgotPassword" class="btn btn-primary">Forgot Password</button>
-        <button type="button" v-else @click="signupFx" class="btn btn-primary">Sign Up</button>
+        <button type="button"  ref="closeModal2" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="button" v-if="modalfx == 'login'" @click="loginFx" class="btn btn-sm btn-primary">Login</button>
+        <button type="button" v-else-if="modalfx == 'forgotPassword'" @click="forgotPassword" class="btn btn-sm btn-primary">Forgot Password</button>
+        <button type="button" v-else @click="signupFx" class="btn btn-sm btn-primary">Sign Up</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- <button type="button" class="btn btn-primary" @click="toast" id="liveToastBtn">Show live toast</button> -->
+<!-- <button type="button" class="btn btn-sm btn-primary" @click="toast" id="liveToastBtn">Show live toast</button> -->
 
 
 
@@ -122,7 +122,7 @@ export default {
       }, 500);
     },
     loginFx(){
-      axios.post('https://ancestryapi.herokuapp.com/api/login', 
+      axios.post('http://127.0.0.1:8000/api/login', 
       {
         'email':this.email,
         'password':this.password
@@ -143,7 +143,7 @@ export default {
         })
     },
     signupFx(){
-      axios.post('https://ancestryapi.herokuapp.com/api/register', 
+      axios.post('http://127.0.0.1:8000/api/register', 
       {
         'name':this.name,
         'email':this.email,
@@ -161,7 +161,7 @@ export default {
     },
     forgotPassword(){
       this.loading = true
-      axios.post('https://ancestryapi.herokuapp.com/api/forgotpassword', 
+      axios.post('http://127.0.0.1:8000/api/forgotpassword', 
       {'email':this.email}
       ).then(response =>  {
         console.log(response.data)
@@ -182,9 +182,11 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap');
 
+
 p, h1, h2, h3,h4,h5, li, button, .btn, label,span,input, a{
     font-family: 'Raleway', sans-serif;
 } 
+
 body,html{
   height: 100%;
   overflow: auto;

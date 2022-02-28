@@ -18,8 +18,8 @@
                     </router-link>
                 </div>
             </div>
-            <div class="alert alert-primary w-50 p-0 mx-auto" role="alert">
-                <p class="fw-bold text-secondary fs-3 mb-0 text-center">{{items.length}} results found</p>
+            <div class="alert alert-primary w-50 p-0 mt-5 mx-auto" role="alert">
+                <p class="fw-bold text-secondary fs-5 mb-0 text-center">{{items.length}} results found</p>
             </div>            
             <!-- <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center mt-5">
@@ -59,7 +59,7 @@ export default {
     },
     created(){
             // call index............................................
-            axios.get('https://ancestryapi.herokuapp.com/api/index'
+            axios.get('http://127.0.0.1:8000/api/index'
             ).then(response => {
                 this.items = response.data 
                 console.log(this.items)
@@ -72,7 +72,7 @@ export default {
     methods:{
         searchFx(event){
             if(event == null){
-                axios.get('https://ancestryapi.herokuapp.com/api/index'
+                axios.get('http://127.0.0.1:8000/api/index'
                 ).then(response => {
                     this.items = response.data 
                 }).catch(error => {

@@ -2,16 +2,16 @@
 <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="#">
         <img :src="logo" alt="" width="30" height="30" class="d-inline-block ms-2 mb-1">
-        <router-link to="/"><h3 class="d-inline-block ms-2 mt-2 text-secondary"  id="navel3">{{brandName}}</h3> </router-link>
+        <router-link to="/"><h4 class="d-inline-block ms-2 mt-2 text-secondary"  id="navel3">{{brandName}}</h4> </router-link>
     </a>
     <form class="form-inline d-flex me-3">
         <div class="input-group flex-nowrap" id="navel1">
-            <button class="btn btn-success " v-show="page" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal" @click="addAncestor">Add/Edit</button>
-            <input type="text" class="form-control" id="navel2" v-show="searchOption" v-model="searchValue" placeholder="Search" @keyup="search" aria-label="Username" aria-describedby="addon-wrapping">
+            <button class="btn btn-sm btn-success " v-show="page" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal" @click="addAncestor">Add/Edit</button>
+            <input type="text" class="form-control form-control-sm" id="navel2" v-show="searchOption" v-model="searchValue" placeholder="Family/Lastname | Hometown" @keyup="search" aria-label="Username" aria-describedby="addon-wrapping">
 
             <i class="bi bi-search input-group-text " id="addon-wrapping" v-show="searchOption" ></i>
-            <i class="bi bi-search input-group-text rounded-circle" id="addon-wrapping"  @click="toast" v-show="!searchOption"></i>
-            <button class="btn btn-danger rounded-circle ms-2" v-show="token"  @click.prevent="logout" > <i class="bi bi-door-open"></i></button>
+            <i class=" btn btn-sm bi bi-search input-group-text rounded-circle" id="addon-wrapping"  @click="toast" v-show="!searchOption"></i>
+            <button class="btn btn-sm btn-danger rounded-circle ms-2" v-show="token"  @click.prevent="logout" > <i class="bi bi-door-open"></i></button>
             
             <!-- <i class="bi bi-door-open input-group-text ms-2 bg-warning rounded-circle" v-show="token" id="addon-wrapping"></i> -->
         </div>
@@ -19,10 +19,10 @@
 </nav>
 
 <div class="position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 11">
-    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+    <div id="liveToast" class="toast" role="alert"  style="width:450px" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
         <div class="toast-header">
-            <input type="text" class="form-control" v-model="searchValue" placeholder="Search" @keyup="adminsearch">
-        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            <input type="text" class="form-control form-control-sm " v-model="searchValue" placeholder="Family/Lastname | Hometown" @keyup="adminsearch">
+        <button type="button" class="btn-close text-danger me-1" @click="toast_bool=false" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
         <div class="toast-body">
             <ul class="list-group list-group-flush">
@@ -38,6 +38,7 @@
     </div>
 </div>
 
+<div id="overlay" v-show="toast_bool" ></div>
 </template>
 
 <script>
@@ -62,7 +63,8 @@ export default {
             page: true,
             searchValue:null,
             adminsearchvalue:null,
-            searchOption:true
+            searchOption:true,
+            toast_bool:false
         }
     },
     computed:{
@@ -102,7 +104,7 @@ export default {
         search(){
             console.log(this.searchValue)
             if(this.searchValue){
-                axios.post(`https://ancestryapi.herokuapp.com/api/search/${this.searchValue}`
+                axios.post(`http://127.0.0.1:8000/api/search/${this.searchValue}`
                 ).then(response => {
                     console.log(response.data)
                     this.$emit('search', response.data)
@@ -117,7 +119,7 @@ export default {
         adminsearch(){
             console.log(this.searchValue)
             var token = localStorage.getItem('token');
-            axios.get(`https://ancestryapi.herokuapp.com/api/adminlookup/${this.searchValue}`,
+            axios.get(`http://127.0.0.1:8000/api/adminlookup/${this.searchValue}`,
             {
                 headers:{'Authorization': `Bearer ${token}`}
             }).then(response => {
@@ -137,7 +139,7 @@ export default {
         logout(){
             console.log('response');
             var token = localStorage.getItem('token');
-            axios.get('https://ancestryapi.herokuapp.com/api/logout',
+            axios.get('http://127.0.0.1:8000/api/logout',
             {
                 headers:{'Authorization': `Bearer ${token}`}
             }
@@ -153,7 +155,7 @@ export default {
             // console.log(id,i)
             var token = localStorage.getItem('token');
             if(this.searchValue){
-                axios.get(`https://ancestryapi.herokuapp.com/api/delete/${id}`,
+                axios.get(`http://127.0.0.1:8000/api/delete/${id}`,
                 {
                 headers:{'Authorization': `Bearer ${token}`}
                 }).then(response => {
@@ -167,11 +169,13 @@ export default {
             }
         },
         toast(){
+            this.toast_bool = true
             var toastLiveExample = document.getElementById('liveToast')
             var toast = new Toast(toastLiveExample)
             toast.show()
         },
         toastclose(){
+            this.toast_bool = false
             var toastLiveExample = document.getElementById('liveToast')
             var toast = new Toast(toastLiveExample)
             toast.hide()
@@ -183,6 +187,20 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css");
 
 .bg-light {
