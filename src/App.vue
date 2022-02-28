@@ -121,7 +121,7 @@ export default {
       }, 500);
     },
     loginFx(){
-      axios.post('http://127.0.0.1:8000/api/login', 
+      axios.post('https://ancestryapi.herokuapp.com/api/login', 
       {
         'email':this.email,
         'password':this.password
@@ -141,7 +141,7 @@ export default {
         })
     },
     signupFx(){
-      axios.post('http://127.0.0.1:8000/api/register', 
+      axios.post('https://ancestryapi.herokuapp.com/api/register', 
       {
         'name':this.name,
         'email':this.email,
@@ -158,7 +158,7 @@ export default {
     },
     forgotPassword(){
       this.loading = true
-      axios.post('http://127.0.0.1:8000/api/forgotpassword', 
+      axios.post('https://ancestryapi.herokuapp.com/api/forgotpassword', 
       {'email':this.email}
       ).then(response =>  {
         this.message = response.data.status

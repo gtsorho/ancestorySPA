@@ -59,7 +59,7 @@ export default {
     },
     created(){
             // call index............................................
-            axios.get('http://127.0.0.1:8000/api/index'
+            axios.get('https://ancestryapi.herokuapp.com/api/index'
             ).then(response => {
                 this.items = response.data 
             }).catch(error => {
@@ -71,7 +71,7 @@ export default {
     methods:{
         searchFx(event){
             if(event == null){
-                axios.get('http://127.0.0.1:8000/api/index'
+                axios.get('https://ancestryapi.herokuapp.com/api/index'
                 ).then(response => {
                     this.items = response.data 
                 }).catch(error => {
