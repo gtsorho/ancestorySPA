@@ -81,10 +81,28 @@ export default {
           this.borderValue = null;
           window.location.reload()
       }, 3000);
-    }
+    },
+    getCookie(cname) {
+      let name = cname + "=";
+      let ca = document.cookie.split(';');
+      for(let i = 0; i < ca.length; i++) {
+          let c = ca[i];
+          while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+          }
+      }
+      return "";
+    },
   },
   beforeMount(){
-          if(!localStorage.getItem('token')){
+    var token = this.getCookie('token')
+          // if(!localStorage.getItem('token')){
+          //     this.$router.push('/')
+          // }
+          if(token == ""){
               this.$router.push('/')
           }
   },

@@ -8,7 +8,7 @@
                     v-for="item in items" :key="item.id"
                     >
                     <router-link class="text-secondary" :to="{path: 'Home', query:{ancestor: JSON.stringify(item)}}" replace>
-                        <img :src="item.memories[1].images" class="card-img-top" alt="...">
+                        <img :src="item.memories[0].images" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title fw-bold">{{item.firstname +' '+ item.lastname +' '+ item.othernames }}</h5>
                             <hr>
@@ -61,7 +61,9 @@ export default {
             // call index............................................
             axios.get('https://ancestryapi.herokuapp.com/api/index'
             ).then(response => {
-                this.items = response.data 
+                console.log(response.data)
+                this.items = response.data
+                console.log(this.items.length) 
             }).catch(error => {
                 console.log(error);
             })

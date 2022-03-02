@@ -69,7 +69,8 @@ export default {
     },
     computed:{
             token(){
-                return localStorage.getItem('token');
+                // return localStorage.getItem('token');
+                return this.getCookie('token')
             }
     },
     created(){
@@ -109,7 +110,8 @@ export default {
             }
         },
         adminsearch(){
-            var token = localStorage.getItem('token');
+            var token = this.getCookie('token')
+            // var token = localStorage.getItem('token');
             axios.get(`https://ancestryapi.herokuapp.com/api/adminlookup/${this.searchValue}`,
             {
                 headers:{'Authorization': `Bearer ${token}`}
@@ -120,27 +122,31 @@ export default {
             })
         },
         addAncestor(){
-            var token = localStorage.getItem('token');
-            if(token){
+            var token = this.getCookie('token')
+            // var token = localStorage.getItem('token');
+            if(token != ""){
                 this.$emit('isauthenticated')
                 this.$router.push('/registration')
             }
         },
         logout(){
-            var token = localStorage.getItem('token');
+            var token = this.getCookie('token')
+            // var token = localStorage.getItem('token');
             axios.get('https://ancestryapi.herokuapp.com/api/logout',
             {
                 headers:{'Authorization': `Bearer ${token}`}
             }
             ).then(response => {
-                localStorage.removeItem('token');
+                this.setCookie('token', "", 1)
+                // localStorage.removeItem('token');
                 this.$router.push('/')
             }).catch(error => {
                 console.log(error);
             })
         },
         deleteData(id,i){
-            var token = localStorage.getItem('token');
+            var token = this.getCookie('token')
+            // var token = localStorage.getItem('token');
             if(this.searchValue){
                 axios.get(`https://ancestryapi.herokuapp.com/api/delete/${id}`,
                 {
@@ -165,7 +171,39 @@ export default {
             var toastLiveExample = document.getElementById('liveToast')
             var toast = new Toast(toastLiveExample)
             toast.hide()
-        }   
+        },
+
+        setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            let expires = "expires="+d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        },
+        getCookie(cname) {
+            let name = cname + "=";
+            let ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        },
+        checkCookie() {
+            let token = getCookie("token");
+            if (token != "") {
+                alert("Welcome again " + token);
+            } else {
+                token = prompt("Please enter your name:", "");
+                if (token != "" && token != null) {
+                setCookie("token", token, 365);
+                }
+            }
+        } 
     }
 
 }

@@ -406,7 +406,8 @@ data() {
             this.relations.forEach(item => {
                 this.bio.bioRelation[item.relativeName] = item.relativeRelation;
             });
-            var token = localStorage.getItem('token');
+            // var token = localStorage.getItem('token');
+            var token = this.getCookie('token')
             if(this.dataToEdit){
                 var urloption = `https://ancestryapi.herokuapp.com/api/update/${this.dataToEdit.id}`
             }else{
@@ -480,7 +481,7 @@ data() {
                     this.$emit('borderstatus')   
                 }
             }).catch(error => {
-                    console.log(error.response.data.message);
+                    console.log(error.response);
                     this.errorMsg = true
                     this.error = error.response.data.message
                                             this.territories =  [
@@ -545,6 +546,20 @@ data() {
                 this.bio.url.push({image : URL.createObjectURL(file[i])});
                 this.postFormData.append('images[]',file[i]);
             }
+        },
+        getCookie(cname) {
+            let name = cname + "=";
+            let ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+                }
+            }
+            return "";
         },
     },
 };

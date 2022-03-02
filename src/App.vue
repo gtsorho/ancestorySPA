@@ -127,7 +127,8 @@ export default {
         'password':this.password
       }
         ).then(response =>  {
-          window.localStorage.setItem('token', response.data.token); 
+          this.setCookie('token', response.data.token, 1 )
+          // window.localStorage.setItem('token', response.data.token); 
           this.responseMsg = true
           setTimeout(() => {
             this.$refs.closeModal.click();
@@ -149,7 +150,8 @@ export default {
         'password_confirmation': this.password_confirmation
       }
         ).then(response => {
-            window.localStorage.setItem('token', response.data.token); 
+            this.setCookie('token', response.data.token, 1 )
+            // window.localStorage.setItem('token', response.data.token); 
             this.$refs.closeModal.click();
             this.$router.push('/registration')
           }).catch(error => {
@@ -168,7 +170,38 @@ export default {
         this.message = error.response.data.message
         this.loading = false
       })
-    }, 
+    },
+    setCookie(cname, cvalue, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        let expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    },
+    // getCookie(cname) {
+    //     let name = cname + "=";
+    //     let ca = document.cookie.split(';');
+    //     for(let i = 0; i < ca.length; i++) {
+    //         let c = ca[i];
+    //         while (c.charAt(0) == ' ') {
+    //         c = c.substring(1);
+    //         }
+    //         if (c.indexOf(name) == 0) {
+    //         return c.substring(name.length, c.length);
+    //         }
+    //     }
+    //     return "";
+    // },
+    // checkCookie() {
+    //     let token = getCookie("token");
+    //     if (token != "") {
+    //         alert("Welcome again " + token);
+    //     } else {
+    //         token = prompt("Please enter your name:", "");
+    //         if (token != "" && token != null) {
+    //         setCookie("token", token, 365);
+    //         }
+    //     }
+    // } 
   },
 }
 
