@@ -50,12 +50,12 @@ hr:not([size]) {
 
 @media screen and (max-width: 1050px) {
     img{
-            height: 4.5in;
+        height: 4.5in;
     }
 } 
 @media screen and (max-width: 993px) {
     img{
-            height: auto;
+        height: auto;
     }
 } 
 
